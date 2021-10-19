@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<style>
+    table, th, td {
+      border:1px solid black;
+    }
+    div{
+        margin: auto;
+        width: 100%;
+        text-align: center;
+        border:1px solid black;
+        padding: 4px ;
+    }
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SELF DEVELOPED CALCULTOR</title>
+</head>
+<body style="background-color: #EEE;" > 
+    <h1 style="text-align: center;">SELF DEVELOPED CALCULATOR</h1><br>
+    <h2 style="color:dimgrey;">Hello</h2>
+    <a  href="/logout">Logout</a>
+
+
+    
+    <form action="/price" method="POST">
+        <h5>Pick Up Pin Code    <input type="text" name="sourcePin" placeholder="Source Pin"> Delivery Pin Code     <input type="text" name="destinationPin" placeholder="Destination Pin">
+
+        </h5>
+    <br>
+    <select name="orderType">
+        <!-- <option name = "orderType" value="Order Type">Order Type</option> -->
+        <option name = "prepaid"  value="Prepaid">Prepaid</option>
+        <option name = "cod" value="COD">COD</option>
+        <option name = "reverse" value="Reverse">Reverse</option>
+
+    </select>
+    <h5>Dimension(cm) <input type="number" name="length" placeholder="length" >
+        <input type="number" name="width" placeholder = "width">
+        <input type="number" name="height"  placeholder = "height"> Weight(kg) <input type="number" name="weight" placeholder = "weight" >
+    </h5>
+    <h5>Invoice Value <input type="text" name="invoice" placeholder="invoice value"></h5>
+
+    <ul>
+        <li>Quoted charges are all inclusive of 18% GST.</li>
+            <li> This is courtesy rate, final bill may differ.</li>
+    </ul>
+   
+   <br><br>
+
+   
+    <button type="submit">Get Price</button>
+
+
+</form><br><br>
+
+    <div> HyperLocal </div>
+    <table style="width:100%">
+
+<tr>
+    <th>Carrier</th>
+    <th>Min Distance</th>
+    <th>Base Price</th>
+    <th>Additional Km Price</th>
+    <th>Additional Km Price</th>
+    <th>Out Ncr Price</th>
+
+</tr>
+<tr>
+    <td>Dunzo</td>
+    <td>3000</td>
+    <td>46</td>
+    <td>23</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Shadowfax</td>
+    <td>8000</td>
+    <td>104</td>
+    <td>15</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>Wefast</td>
+    <td>1000</td>
+    <td>66</td>
+    <td>12</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+</table>
+
+<br><br><br>
+<table>
+<div> Air Mode every (0.5 kg) </div>
+<table style="width:100%">
+
+    <tr>
+    <th>Carrier</th>
+    <th>Witin City</th>
+    <th>Within Zone</th>
+    <th>Metro</th>
+    <th> Rest Of India</th>
+    <th>Special</th>
+    <th>Minimum COD</th>
+    <th>COD %</th>
+
+</tr>
+
+<tr>
+    <td>Delhivery</td>
+    <td>36</td>
+    <td>43</td>
+    <td>55</td>
+    <td>58</td>
+    <td>74</td>
+    <td>41</td>
+    <td>2</td>
+</tr>
+<tr>
+    <td>EcomExpress</td>
+    <td>50</td>
+    <td>61</td>
+    <td>69</td>
+    <td>79</td>
+    <td>90</td>
+    <td>47</td>
+    <td>2.5</td>
+</tr>
+<tr>
+    <td>Xpressbees</td>
+    <td>33</td>
+    <td>41</td>
+    <td>48</td>
+    <td>55</td>
+    <td>61</td>
+    <td>41</td>
+    <td>2</td>
+</tr>
+<tr>
+    <td>DTDC-Dotzot	</td>
+    <td>32</td>
+    <td>33</td>
+    <td>56</td>
+    <td>62</td>
+    <td>78</td>
+    <td>36</td>
+   
+    <td>2</td>
+</tr>
+<tr>
+    <td>Bluedart</td>
+    <td>49</td>
+    <td>53</td>
+    <td>58</td>
+    <td>74</td>
+    <td>101</td>
+    <td>43</td>
+    <td>2.5</td>
+</tr>
+
+</table>
+<br><br><br>
+<table>
+    <div> Surface Mode every (0.5kg) </div>
+    <table style="width:100%">
+        <tr>
+            <th>Carrier</th>
+            <th>Witin City</th>
+            <th>Within Zone</th>
+            <th>Metro</th>
+            <th> Rest Of India</th>
+            <th>Special</th>
+            <th>Minimum COD</th>
+            <th>COD %</th>
+        
+        </tr>
+        <tr>
+            <td>Delhivery 0.5kg</td>
+            <td>36</td>
+            <td>41</td>
+            <td>49</td>
+            <td>53</td>
+            <td>76</td>
+            <td>41</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Xpressbees 0.5kg</td>
+            <td>33</td>
+            <td>41</td>
+            <td>43</td>
+            <td>46</td>
+            <td>61</td>
+            <td>41</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Udaan 0.5kg</td>
+            <td>39</td>
+            <td>42</td>
+            <td>53</td>
+            <td>63</td>
+            <td>83</td>
+            <td>47</td>
+            <td>2</td>
+        </tr>
+
+
+        </table>
+
+
+        <br><br><br>
+
+
+<table>
+<div> Surface Mode every (1kg) </div>
+<table style="width:100%">
+    <tr>
+        <th>Carrier</th>
+        <th>Witin City</th>
+        <th>Within Zone</th>
+        <th>Metro</th>
+        <th> Rest Of India</th>
+        <th>Special</th>
+        <th>Minimum COD</th>
+        <th>COD %</th>
+    
+    </tr>
+    <tr>
+    <td>Delhivery  1 kg </td>
+    <td>69</td>
+    <td>78</td>
+    <td>80</td>
+    <td>104</td>
+    <td>143</td>
+    <td>41</td>
+    <td>2</td>
+</tr>
+<tr>
+    <td>Delhivery add. 1kg</td>
+    <td>48</td>
+    <td>55</td>
+    <td>64</td>
+    <td>73</td>
+    <td>100</td>
+    <td>41</td>
+    <td>2</td>
+</tr>
+<tr>
+   
+    <td>Xpressbees 1kg</td>
+    <td>61</td>
+    <td>71</td>
+    <td>83</td>
+    <td>89</td>
+    <td>103</td>
+    <td>41</td>
+    
+    <td>2</td>
+</tr>
+<tr>
+    
+    <td>Xpressbees add. 1kg</td>
+    <td>31</td>
+    <td>37</td>
+    <td>40</td>
+    <td>43</td>
+    <td>51</td>
+    <td>41</td>
+    <td>2</td>
+</tr>
+<tr>
+    
+    <td>Udaan 1kg</td>
+    <td>47</td>
+    <td>50</td>
+    <td>61</td>
+    <td>74</td>
+    <td>90</td>
+    <td>47</td>
+    <td>2</td>
+</tr>
+<tr>
+    
+    <td>Udaan add. 1kg</td>
+    <td>33</td>
+    <td>35</td>
+    <td>43</td>
+    <td>52</td>
+    <td>63</td>
+    <td>47</td>
+    <td>2</td>
+</tr>
+
+</table>
+
+<br><br><br>
+<table>
+<div> Surface Mode every (2kg) </div>
+<table style="width:100%">
+
+    <tr>
+        <th>Carrier</th>
+        <th>Witin City</th>
+        <th>Within Zone</th>
+        <th>Metro</th>
+        <th> Rest Of India</th>
+        <th>Special</th>
+        <th>Minimum COD</th>
+        <th>COD %</th>
+    
+    </tr>
+    <tr>
+
+        <td>Delhivery 2kg</td>
+        <td>96</td>
+        <td>114</td>
+        <td>131</td>
+        <td>159</td>
+        <td>211</td>
+        <td>41</td>
+        <td>2</td>
+    </tr>
+    <tr>
+         <td>Delhivery add. 1kg</td>
+        <td>48</td>
+        <td>55</td>
+        <td>64</td>
+        <td>73</td>
+        <td>100</td>
+        <td>41</td>
+        <td>2</td>
+    </tr>
+    <tr>
+       
+        <td> Xpressbees 2kg</td>
+       <td>92</td>
+       <td>107</td>
+       <td>123</td>
+       <td>132</td>
+       <td>153</td>
+       <td>41</td>
+       <td>2</td>
+   </tr>
+    
+   <tr>
+    <td>Xpressbees add. 1kg</td>
+   <td>31</td>
+   <td>37</td>
+   <td>40</td>
+   <td>43</td>
+   <td>51</td>
+   <td>41</td>
+   <td>2</td>
+</tr>
+	
+<tr>
+       
+    <td> DTDC-Dotzot 2kg</td>
+   <td>82</td>
+   <td>115</td>
+   <td>130</td>
+   <td>146</td>
+   <td>172</td>
+   <td>36</td>
+   <td>2</td>
+</tr>
+<tr>
+       
+    <td> DTDC-Dotzot add. 2kg</td>
+   <td>37</td>
+   <td>46</td>
+   <td>55</td>
+   <td>67</td>
+   <td>78</td>
+   <td>36</td>
+   <td>2</td>
+</tr>
+ <tr>
+ <td> Udaan 2kg</td>
+   <td>63</td>
+   <td>69</td>
+   <td>80</td>
+   <td>90</td>
+   <td>120</td>
+   <td>47</td>
+   <td>2</td>
+</tr>
+<tr>
+    <td> Udaan add. 1kg</td>
+      <td>33</td>
+      <td>35</td>
+      <td>43</td>
+      <td>52</td>
+      <td>63</td>
+      <td>47</td>
+      <td>2</td>
+   </tr>
+</table>
+
+
+<br><br><br>
+<table>
+    <div> Surface Mode every (5 kg) </div>
+    <table style="width:100%">
+        <tr>
+            <th>Carrier</th>
+            <th>Witin City</th>
+            <th>Within Zone</th>
+            <th>Metro</th>
+            <th> Rest Of India</th>
+            <th>Special</th>
+            <th>Minimum COD</th>
+            <th>COD %</th>
+        
+        </tr>
+        <tr>
+            <td>Delhivery 5kg</td>
+            <td>150</td>
+            <td>172</td>
+            <td>193</td>
+            <td>229</td>
+            <td>316</td>
+            <td>41</td>
+            <td>2</td>
+        </tr>
+
+        <tr>
+            <td>Delhivery add. 1kg</td>
+            <td>30</td>
+            <td>35</td>
+            <td>37</td>
+            <td>44</td>
+            <td>53</td>
+            <td>41</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Fedex 5kg</td>
+            <td>122</td>
+            <td>158</td>
+            <td>198</td>
+            <td>215</td>
+            <td>311</td>
+            <td>55</td>
+            <td>2</td>
+        </tr>
+
+
+            <td>Fedex add. 1kg</td>
+            <td>22</td>
+            <td>29</td>
+            <td>36</td>
+            <td>40</td>
+            <td>57</td>
+            <td>55</td>
+            <td>2</td>
+        </tr>
+        <tr>
+        <td>Xpressbees 5kg</td>
+        <td>175</td>
+        <td>208</td>
+        <td>232</td>
+        <td>250</td>
+        <td>290</td>
+        <td>41</td>
+        <td>2</td>
+    </tr>
+
+    <td>Xpressbees add. 1kg</td>
+    <td>27</td>
+    <td>33</td>
+    <td>36</td>
+    <td>39</td>
+    <td>45</td>
+    <td>41</td>
+    <td>2</td>
+</tr>
+
+<tr>
+    <td>Udaan 5kg</td>
+    <td>105</td>
+    <td>125</td>
+    <td>156</td>
+    <td>175</td>
+    <td>211</td>
+    <td>47</td>
+    <td>2</td>
+</tr>
+
+<tr>
+    <td>Udaan add. 1 kg</td>
+    <td>33</td>
+    <td>36</td>
+    <td>51</td>
+    <td>62</td>
+    <td>75</td>
+    <td>47</td>
+    <td>2</td>
+</tr>
+
+
+        
+</table>
+
+</body>
+</html>

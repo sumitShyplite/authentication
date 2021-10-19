@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title style="text-align:center;"> Price_Calculator</title>
+</head>
+<body >
+    <h1 style="text-align: center;">Price_Calculator</h1> 
+    <h2 style="color:dimgrey;">Hello</h2>
+
+    <a href="/logout">Logout</a>
+
+    <form action="/post" method="POST">
+    <!-- <form action="/price" method="POST"> -->
+    
+    <br>
+    <h4>Enter Source Code <input type="text" name = "sourcePin" placeholder="Enter Source Pin" >
+    </h4>
+    <h4>Enter Destination Code <input type="text" name ="destinationPin" placeholder="Enter Destination Pin">
+    </h4>
+    <br>
+    <!-- <h3>If You Want Only SERVICEABILITY <button type="submit">GET SERVICEABILITY</button></h3> -->
+    <br><br>
+    <h5>Choose Your Order Type <select name="orderType">
+        <option value="1"selected>Order Type</option>
+        <option value="1">COD</option>
+            <option value="2">Prepaid</option>
+            <option value="3">Reverse</option>
+    </select></h5>
+    <br>
+    <h4>Enter Dimension Of Package  <input type="text" name = "length" placeholder="length">
+        <input type="text" name = "width" placeholder="width">
+        <input type="text" name = "height" placeholder="height">
+        <input type="text" name = "weight" placeholder="weight">
+        <br>
+        <h5>Create Invoice<input type="text" name = "invoiceValue" placeholder="invoice"></h5>
+    </h4>
+        <br>
+        <br>
+
+    
+    
+    <h4>Price Of The Package <button type="submit" >Get Price</button></h4>
+
+    </form>
+
+</body>
+</html>
+
+

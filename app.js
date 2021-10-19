@@ -10,6 +10,8 @@ const app = express()
 
 app.use(bodyParser.urlencoded({extended:false}))
 
+const urlencodedParser = bodyParser.urlencoded({extended:false})
+
 app.use(cookieParser())
 //app.use(session({
 
@@ -17,14 +19,16 @@ app.use(cookieParser())
 
 app.set("view engine","ejs")
 app.set("views","./view")
+const controller = require('./controller')
+
 
 let MySQLStore = require("express-mysql-session")(session)
 
 let connection = {
     host: 'sql6.freesqldatabase.com',
-  user: 'sql6443877',
-  password: 'J8qDiDJp3j',
-  database: 'sql6443877',
+  user: 'sql6445341',
+  password: '7U4vlnIgXs',
+  database: 'sql6445341',
   port:'3306'
 
 }
@@ -42,6 +46,7 @@ app.use(session({
 
 //routes
 app.get("/",(req,res) =>{
+    console.log("sessiob===========>",req.session)
      if(req.session.isAuth){
          return res.render("home",{
              name:req.session.name
@@ -54,24 +59,17 @@ app.get("/login",(req,res) =>{
     res.render("login")
 })
 
-app.post("/login",async (req,res) =>{
-    const{email,password} = req.body
-    console.log("req.body=====",req.body)
-    const user = await query(`SELECT name,password FROM user WHERE email ='${email}' AND password = '${password}'`)
-    if(user.length){
-        req.session.isAuth = true
-        req.session.name = user[0].name
-        return res.redirect("/home")
-    }
-    return res.redirect('/login')
-})
+app.post("/login",urlencodedParser,controller.login)
+
+
 
 app.get("/home",(req,res)=>{
     console.log("req.session------",req.session)
     if(req.session.isAuth){
-        return res.render("home",{
+        return res.render("apis",{
             name:req.session.name
         })
+        // return res.redirect('/priceform')
     }
     res.redirect("/login")
 })
@@ -85,14 +83,13 @@ app.post("/register",async(req,res) =>{
     return res.redirect("/login")
 })
 
-app.get("/logout",async(req,res)=>{
-    req.session.destroy(() =>{
-        return res.redirect("/login")
-    })
-})
+app.get("/logout",controller.logout)
 
-//app.use("/",require("./routes"))
+app.get("/priceform",controller.form)
+app.post("/price",controller.pin)
 
+app.get("/apiform",controller.apiform)
+app.post("/post",urlencodedParser,controller.price)
 
 app.listen(3000,() =>{
     console.log("server is running on port 3000")
