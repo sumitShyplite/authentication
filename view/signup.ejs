@@ -6,16 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
-<body>
-    <h1>Register</h1>
-
+<body >
+    <button onclick="goBack()">Go Back</button>
+    <h1 style="text-align: center;margin: 8%;">Register</h1>
+<div style="text-align: center; ">
     <form action="/register" method = "POST">
-    <input type="text" name="name" placeholder="Enter your Username">
-    <input type="email" name="email" placeholder="Enter your email">
-    <input type="password" name="password" placeholder="Enter Your Password">
-    <input type="submit" value="submit">
-</form>
-<a href="/login">Login</a>
+        <h3>Enter Your Name    <input type="text" name="name" placeholder="Enter your Username">
+        </h3>
+    <h3>Enter Your Email <input type="email" name="email" placeholder="Enter your email"></h3>
+   <h3>Enter Your Password <input type="password-" name="password" placeholder="Enter Your Password"></h3> 
+    <input style="font-size: larger;" type="submit" value="submit">
+</form><br><br>
+
+<button><a style="font-size: larger;"  href="/login">Login</a></button>
+</div>
+
+<script>
+    function goBack() {
+      window.history.back();
+    }
+    </script>
+    
     
 </body>
 </html>

@@ -7,16 +7,24 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>Wrong Password!!!!!!!!!!!!!</h1>
-    <h2>Login</h1>
-    <form action="/login" method="POST">
-        <input type="text" name="email" placeholder="Enter email">
-        <input type="text" name="password" placeholder="Enter Password">
+    <button onclick="goBack()">Go Back</button>
 
-        <input type="submit" value="submit">
+    <h1 style="text-align: center;">Wrong Password!!!!!!!!!!!!!</h1>
+    <h2 style="text-align: center;margin-top: 8%;">Login Again</h1>
+        <div style="text-align: center;">
+    <form action="/login" method="POST">
+       <h3>Enter Your Email: <input  type="text" name="email" placeholder="Enter email"></h3>
+        <h3>Enter Your Password:<input type="text" name="password" placeholder="Enter Password"></h3>
+
+        <input style="font-size: larger;" type="submit" value="submit">
     </form><br>
-    <a href="/register">Register</a><br><br>
-    
-    
+
+    <button style="text-align: center;font-size: larger;" ><a  href="/register">Register</a></button>
+</div>
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
 </body>
 </html>

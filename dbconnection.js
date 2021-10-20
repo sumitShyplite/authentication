@@ -12,3 +12,6 @@ db.connect(async (err) => {
     if (err) throw err;
     console.log('Connected to MySQL Server!');
 });
+
+module.exports = { db };
+

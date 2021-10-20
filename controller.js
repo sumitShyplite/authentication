@@ -1,12 +1,15 @@
 const express = require("express")
+const bcrypt = require("bcryptjs")
 const bodyparser = require("body-parser")
 const crypto = require("crypto");
 const util = require('util');
 //require('dotenv').config();
 const requesting = require('request');
 const { maxHeaderSize } = require("http");
+// const { query } = require("express");
+const { createConnection } = require("net");
 const request = util.promisify(requesting);
-
+const { db } = require('./dbconnection');
 
 const timestamp     = +new Date();
 const key           = "K4OuhK0B0f4=";
@@ -15,30 +18,37 @@ const sellerID      = 4225;
 const secret        = new Buffer("AwUT4GSgoH4pCJFPYMnAOj34C6/7Oy92HSjCMR7C1vD0hi5GOpKPUKhfv/nOd/cZVmerneEUigg9zyLyr7dFHw==")
 
 
-const login = async(req,res)=>{
-    console.log("req.body=====",req.body)
-    console.log("req.body=====",req.query)
+const login = async (req,res)=>{
 
     const{email,password} = req.body
-    console.log("req.body=====",req.body)
-    const user = await query(`SELECT name,password FROM user WHERE email ='${email}' AND password = '${password}'`)
-    console.log("user=>",user)
+    console.log(`SELECT name,password FROM user WHERE email ='${email}' AND password = '${password}'`)
+    const user = await query(`SELECT name,password FROM user WHERE email='${email}' AND password='${password}'`);
+
+    
+    console.log("user=+++++++++++========>",user);
     if(user.length){
         req.session.isAuth = true
-        req.session.name = user[0].name
+        req.session.name = user[0].name;
         return res.redirect("/home")
     }
-    return res.render('in')
+    return res.render('in');
 }
+
+
 
 const logout = (req,res)=>{
     req.session.destroy(() =>{
         return res.redirect("/login")
-    })
+    });
 }
 
 const form = (req,res) =>{
-    return res.render("price");
+    if(!req.session.isAuth){
+        return res.render('login');
+    }
+    return res.render("price",{
+        ans: undefined
+    });
 }
 
 const pin = async(req,res) =>{
@@ -69,7 +79,7 @@ const pin = async(req,res) =>{
   
 
 
-  if(sourcePin ==110041 && destinationPin == 110027){
+  if(sourcePin == 110041 && destinationPin == 110027){
       console.log("Pin is within city")
       ans.push(`Pick Up Pin Code-> ${sourcePin}   Delivery Pin Code->${destinationPin}`);
       ans.push(`Pin is within city`)
@@ -615,7 +625,7 @@ const pin = async(req,res) =>{
         }
     }
 
-    return res.json(ans);
+    return res.render('price',{ans});
 
 } catch(err){
     console.log(err);
@@ -626,7 +636,13 @@ const pin = async(req,res) =>{
 
 
 const apiform =(req,res)=>{
-   return res.render("apiform");
+    if(!req.session.isAuth){
+        return res.render('login');
+    }
+//    return res.render("apiform");
+   return res.render("apiform",{
+    data: undefined
+});
 }
 
 const generateAuth = () => {
@@ -715,9 +731,11 @@ const price = async (req,res)=>{
         data.price=price.body.pricing
     }
     console.log("price -----",data.price)
-         res.send(data)
+     
         console.log("data->->->->->->",data);
+        return res.render('apiform',{data});
 }
+
     catch(err){
 
         return res.send('Something Went Wrong!!!!!');

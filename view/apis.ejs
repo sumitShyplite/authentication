@@ -5,17 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=\, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
-    <h2>Welcome  <%= name %></h2>
-    <a href="/logout">Logout</a>
+    <div>
+    <button onclick="goBack()">Go Back</button>
+    <button style="position: relative; margin-left: 90%;" ><a href="/logout">Logout</a></button><br>
+    </div>
+    <h2 style="text-align: center;">Welcome  <%= name %> </h2> <br>
+    
 
     <form action="/priceform" method="GET">
-    <button type="submit">SELF DEVELOPED</button></form>
+  <button type="submit">SELF DEVELOPED</button></form><br><br>
 
-    <form action="/apiform" method="GET">
-    <button type="submit">SHYPLITE PRICE CALCULATOR</button>
+   <form action="/apiform" method="GET">
+<button type="submit">SHYPLITE PRICE CALCULATOR</button>
 </form>
+
+
+
+<script>
+    function goBack() {
+      window.history.back();
+    }
     
+    </script>
 </body>
 </html>
+
+
+    
+  

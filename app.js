@@ -1,6 +1,9 @@
 const express = require("express")
+const bcrypt = require("bcryptjs")
+
 require("./dbconnection")
 const ejs = require("ejs")
+const mysql = require("mysql")
 
 const bodyParser = require("body-parser")
 const session = require("express-session")
@@ -33,6 +36,16 @@ let connection = {
 
 }
 
+// connection.connect((err) => {
+//     if (err) throw err;
+//     connection.query("SELECT * FROM pincodes", function (err, rows, fields) {
+//       if (err) throw err;
+//       console.log(rows);
+//     });
+//   });
+
+
+
 //session
 let sessionStore = new MySQLStore(connection)
 
@@ -44,9 +57,16 @@ app.use(session({
 }))
 
 
+app.use((req, res, next)=>{ 
+    console.log("=seeeesssiiion",req.session);
+
+    next();
+ });
+
+
 //routes
 app.get("/",(req,res) =>{
-    console.log("sessiob===========>",req.session)
+    console.log("session ===========>",req.session)
      if(req.session.isAuth){
          return res.render("home",{
              name:req.session.name
@@ -60,8 +80,6 @@ app.get("/login",(req,res) =>{
 })
 
 app.post("/login",urlencodedParser,controller.login)
-
-
 
 app.get("/home",(req,res)=>{
     console.log("req.session------",req.session)
@@ -77,6 +95,7 @@ app.get("/home",(req,res)=>{
 app.get("/register",(req,res) =>{
     res.render("signup")
 })
+//const hashedPsw = await bcrypt.hash(password,12)
 
 app.post("/register",async(req,res) =>{
     await query (`INSERT INTO user SET ?;`,req.body)
