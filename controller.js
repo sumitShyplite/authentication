@@ -31,12 +31,21 @@ const login = async (req,res)=>{
         req.session.name = user[0].name;
         return res.redirect("/home")
     }
-    return res.render('in');
+    return res.render('incorrect1');
+}
+
+const register = async(req,res) =>{
+
+    
+await query (`INSERT INTO user SET ?;`,req.body)
+    return res.redirect("/login")
+
+
 }
 
 
 
-const logout = (req,res)=>{
+const logout = async (req,res)=>{
     req.session.destroy(() =>{
         return res.redirect("/login")
     });
@@ -72,6 +81,19 @@ const pin = async(req,res) =>{
   console.log("destination pin ",destinationPin)
   
   console.log("weight is ------",weight)
+
+  if(!sourcePin || !destinationPin){
+    res.send("Pin is missing!!!!!");
+}
+if(isNaN(sourcePin) || isNaN(destinationPin)){
+    res.send("Pin is in alpha")
+}
+if(sourcePin.length!= 6) {
+    res.send('Invalid sourcePin!')
+}
+if(destinationPin.length !=6){
+    res.send('Invalid destinationPin!')
+}
 
    const slab = (weight/ 0.5)
   const ans = [];
@@ -744,4 +766,4 @@ const price = async (req,res)=>{
 
 
 
-module.exports = {form,pin,logout,apiform,price,login};
+module.exports = {form,pin,logout,apiform,price,login,register};

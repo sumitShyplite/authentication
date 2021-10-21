@@ -12,23 +12,18 @@ const cookieParser = require("cookie-parser")
 const app = express()
 
 app.use(bodyParser.urlencoded({extended:false}))
-
 const urlencodedParser = bodyParser.urlencoded({extended:false})
 
 app.use(cookieParser())
-//app.use(session({
-
-//}))
-
 app.set("view engine","ejs")
 app.set("views","./view")
-const controller = require('./controller')
 
+const controller = require('./controller')
 
 let MySQLStore = require("express-mysql-session")(session)
 
 let connection = {
-    host: 'sql6.freesqldatabase.com',
+  host: 'sql6.freesqldatabase.com',
   user: 'sql6445341',
   password: '7U4vlnIgXs',
   database: 'sql6445341',
@@ -49,7 +44,7 @@ let connection = {
 //session
 let sessionStore = new MySQLStore(connection)
 
-app.use(session({
+    app.use(session({
     secret:"secret",
     resave:false,
     saveUninitialized:false,
@@ -58,7 +53,7 @@ app.use(session({
 
 
 app.use((req, res, next)=>{ 
-    console.log("=seeeesssiiion",req.session);
+    console.log("seeeesssiiion====",req.session);
 
     next();
  });
@@ -85,9 +80,10 @@ app.get("/home",(req,res)=>{
     console.log("req.session------",req.session)
     if(req.session.isAuth){
         return res.render("apis",{
-            name:req.session.name
+            name:req.session.name,
+            ans: [],
+            data: undefined
         })
-        // return res.redirect('/priceform')
     }
     res.redirect("/login")
 })
@@ -95,12 +91,8 @@ app.get("/home",(req,res)=>{
 app.get("/register",(req,res) =>{
     res.render("signup")
 })
-//const hashedPsw = await bcrypt.hash(password,12)
+app.post("/register",urlencodedParser,controller.register)
 
-app.post("/register",async(req,res) =>{
-    await query (`INSERT INTO user SET ?;`,req.body)
-    return res.redirect("/login")
-})
 
 app.get("/logout",controller.logout)
 

@@ -20,7 +20,7 @@
 </head>
 <body style="background-color: #EEE;" >
 
-    <button onclick="goBack()">Go Back</button>    <button style=" margin-left: 90%;" ><a href="/logout">Logout</a></button>
+    <!-- <button onclick="goBack()">Go Back</button>    <button style=" margin-left: 90%;" ><a href="/logout">Logout</a></button> -->
          
 
     
@@ -37,13 +37,14 @@
         </h5>
     <br>
     
-    <select  name="orderType">
+    <select onchange="changeInvoice()" name="orderType">
         <!-- <option name = "orderType" value="Order Type">Order Type</option> -->
         <option name = "prepaid"  value="Prepaid">Prepaid</option>
         <option name = "cod" value="COD">COD</option>
         <option name = "reverse" value="Reverse">Reverse</option>
 
     </select>
+    
    
       
      
@@ -53,10 +54,10 @@
     </h5>
     <h5>Invoice Value <input type="text" name="invoice" placeholder="invoice value"></h5>
 
-    <ul>
+   
         <li>Quoted charges are all inclusive of 18% GST.</li>
             <li> This is courtesy rate, final bill may differ.</li>
-    </ul>
+    
    
    <br><br>
 
@@ -526,11 +527,11 @@
         
 </table>
 
-<script>
+<!-- <script>
     function goBack() {
       window.history.back();
     }
-    </script>
+    </script> -->
     
 
 </body>
