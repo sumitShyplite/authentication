@@ -31,7 +31,7 @@ const login = async (req,res)=>{
         req.session.name = user[0].name;
         return res.redirect("/home")
     }
-    return res.render('incorrect1');
+    return res.render('in');
 }
 
 const register = async(req,res) =>{
@@ -647,11 +647,15 @@ if(destinationPin.length !=6){
         }
     }
 
-    return res.render('price',{ans});
+    return res.render('apis',{
+        name: req.session.name,
+        ans,
+        data: undefined
+    });
 
 } catch(err){
     console.log(err);
-    res.send(err)
+    res.send("Something Went Wrong!!!!!!!!!!")
 }
 }
 
@@ -755,7 +759,11 @@ const price = async (req,res)=>{
     console.log("price -----",data.price)
      
         console.log("data->->->->->->",data);
-        return res.render('apiform',{data});
+        return res.render('apis',{
+            name: req.session.name,
+        ans:[],
+        data
+        });
 }
 
     catch(err){

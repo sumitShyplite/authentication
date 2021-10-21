@@ -10,7 +10,6 @@
         margin: auto;
         width: 100%;
         text-align: center;
-        border:1px solid black;
         padding: 4px ;
     }
     </style>
@@ -36,14 +35,20 @@
 
         </h5>
     <br>
-    
-    <select onchange="changeInvoice()" name="orderType">
-        <!-- <option name = "orderType" value="Order Type">Order Type</option> -->
+<!--     
+    <h5>Choose Your Order Type <select name="orderType"  id="orderType" onclick="myfun()">
         <option name = "prepaid"  value="Prepaid">Prepaid</option>
         <option name = "cod" value="COD">COD</option>
         <option name = "reverse" value="Reverse">Reverse</option>
 
-    </select>
+    </select> -->
+
+    <select name="orderType" id="orderType" onclick="myfun()">
+        <option value="prepaid">Prepaid</option>
+        <option value="cod"   >Cod</option>
+        <option value="reverse">Reverse</option>
+      </select>
+
     
    
       
@@ -52,9 +57,12 @@
         <input type="number" name="width" placeholder = "width">
         <input type="number" name="height"  placeholder = "height"> Weight(kg) <input type="number" name="weight" placeholder = "weight" >
     </h5>
-    <h5>Invoice Value <input type="text" name="invoice" placeholder="invoice value"></h5>
-
    
+
+
+<div id="my">
+	<input type="text" name="invoiceValue" placeholder="Invoice value">
+</div>
         <li>Quoted charges are all inclusive of 18% GST.</li>
             <li> This is courtesy rate, final bill may differ.</li>
     
@@ -74,7 +82,7 @@
     <%}%>
 
 </form><br><br>
-
+<div id = "notIncluded">
     <div> HyperLocal </div>
     <table style="width:100%">
 
@@ -527,11 +535,20 @@
         
 </table>
 
-<!-- <script>
-    function goBack() {
-      window.history.back();
-    }
-    </script> -->
+</div>
+
+
+    <script>
+        setInterval(()=>{
+            var val = document.getElementById("orderType").selectedOptions[0].value;
+            if(val == "cod"){
+            document.getElementById("my").style.display = "block";
+            }
+            else{
+            document.getElementById("my").style.display = "none";
+            }
+       },100)
+    </script>
     
 
 </body>

@@ -44,6 +44,12 @@
           border: 1px solid #ccc;
           border-top: none;
         }
+        #comparission {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
         </style>
 
 
@@ -56,9 +62,13 @@
     <h2 style="text-align: center;">Welcome  <%= name %> </h2> <br>
     
 <div class = "tab">
+
         <button class="tablinks" onclick="selfPrice()" > Self Developed Price Calculator</button>
 
        <button  class="tablinks" onclick="shyplite()" type="submit">Shyplite Price Calculator</button>
+
+       <button  class="tablinks" onclick="comparission()" type="submit">Comparrission</button>
+
 </div>
 
 <div id="self">
@@ -69,21 +79,49 @@
 <div id="shyplite">
     <%- include('apiform')%>
 </div>
+
+<div id = "comparission"> 
+    <div>
+        <%- include('price'); %>
+    </div>
+    <hr>
+    <div>
+        <%- include('apiform')%>
+    </div>
+
+</div>
 <script>
     function goBack() {
       window.history.back();
     }
     document.getElementById("shyplite").style.display = "none";
     document.getElementById("self").style.display = "none";
+    document.getElementById("comparission").style.display = "none";
+    document.getElementById("notIncluded").style.display = "block"
 
     function selfPrice(){
-        console.log("111111111");
+        
         document.getElementById("shyplite").style.display = "none";
         document.getElementById("self").style.display = "block";
+        document.getElementById("comparission").style.display = "none";
+        document.getElementById("notIncluded").style.display = "block"
+
+
     }
     function shyplite(){
         document.getElementById("shyplite").style.display = "block";
         document.getElementById("self").style.display = "none";
+        document.getElementById("comparission").style.display = "none";
+
+    }
+    function comparission(){
+
+    document.getElementById("shyplite").style.display = "block";
+    document.getElementById("self").style.display = "block";
+    document.getElementById("comparission").style.display = "none";
+    document.getElementById("notIncluded").style.display = "none"
+
+
     }
     function openCalculator(evt, calculator) {
   var i, tabcontent, tablinks;

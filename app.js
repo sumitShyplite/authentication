@@ -81,7 +81,7 @@ app.get("/home",(req,res)=>{
     if(req.session.isAuth){
         return res.render("apis",{
             name:req.session.name,
-            ans: [],
+            ans:[],
             data: undefined
         })
     }

@@ -17,33 +17,31 @@
     
 
     <form action="/post" method="POST">
-    <!-- <form action="/price" method="POST"> -->
     
-    <br>
     <h4>Enter Source Code <input type="text" name = "sourcePin" placeholder="Enter Source Pin" >
     </h4>
     <h4>Enter Destination Code <input type="text" name ="destinationPin" placeholder="Enter Destination Pin">
     </h4>
-    <br>
-    <!-- <h3>If You Want Only SERVICEABILITY <button type="submit">GET SERVICEABILITY</button></h3> -->
+    
     <br><br>
-    <h5>Choose Your Order Type <select name="orderType">
-        <option value="1"selected>Order Type</option>
-        <option  value="1">COD</option>
-            <option  value="2">Prepaid</option>                
-            
-           
-            <option value="3">Reverse</option>
-    </select></h5>
+    <select name="orderType" id="orderType2" onclick="myfun()">
+        <option value="prepaid">Prepaid</option>
+        <option value="cod"   >Cod</option>
+        <option value="reverse">Reverse</option>
+      </select>
     <br>
     
+  
     <h4>Enter Dimension Of Package  <input type="text" name = "length" placeholder="length">
         <input type="text" name = "width" placeholder="width">
         <input type="text" name = "height" placeholder="height">
         <input type="text" name = "weight" placeholder="weight">
         <br>
-        <h5>Create Invoice<input type="text" name = "invoiceValue" placeholder="invoice"></h5>
-    </h4>
+        
+<div id="my2">
+	<input type="text" name="invoiceValue" placeholder="Invoice value">
+</div>
+
         <br>
         <br>
 
@@ -66,10 +64,17 @@
 
     </form>
 
-<script>
-    // function goBack() {
-    //   window.history.back();
-    // }
+
+    <script>
+        setInterval(()=>{
+            var val = document.getElementById("orderType2").selectedOptions[0].value;
+            if(val == "cod"){
+            document.getElementById("my2").style.display = "block";
+            }
+            else{
+            document.getElementById("my2").style.display = "none";
+            }
+       },100)
     </script>
     
 
