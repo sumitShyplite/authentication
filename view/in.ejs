@@ -13,9 +13,14 @@
     <h2 style="text-align: center;margin-top: 8%;">Login Again</h1>
         <div style="text-align: center;">
     <form action="/login" method="POST">
-       <h3>Enter Your Email: <input  type="text" name="email" placeholder="Enter email"></h3>
-        <h3>Enter Your Password:<input type="text" name="password" placeholder="Enter Password"></h3>
-
+      <h3> Enter Your Email : <input  type="text" name="email" placeholder="Enter email"> </h3>
+      <br>
+      <br>
+       <h3> Enter Your Password: <input type="password" name="password" placeholder="Enter Password" id="myInput"></h3>
+       <br>
+       <br>
+<input type="checkbox" onclick="myFunction()">Show Password
+<br><br><br>
         <input style="font-size: larger;" type="submit" value="submit">
     </form><br>
 
@@ -25,6 +30,14 @@
         function goBack() {
           window.history.back();
         }
+        function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
         </script>
 </body>
 </html>

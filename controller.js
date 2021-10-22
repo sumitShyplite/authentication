@@ -98,13 +98,23 @@ if(destinationPin.length !=6){
    const slab = (weight/ 0.5)
   const ans = [];
 
+  const user = await query(`SELECT * FROM pincodes WHERE sourcepin='${sourcePin}' AND destinationPin='${destinationPin}'`);
+  if(user.length==0)
+  {
+    res.send("we do not provide service to your pincode!!!!!")
+  } 
+  console.log("user====================>",user)
+  console.log(user[0].sourcePin, user[0].destinationPin )
+
   
 
 
-  if(sourcePin == 110041 && destinationPin == 110027){
-      console.log("Pin is within city")
+  if(user[0].sourcePin == 110041  && user[0].destinationPin == 110027){
+      console.log("zone====",user[0].zone)
       ans.push(`Pick Up Pin Code-> ${sourcePin}   Delivery Pin Code->${destinationPin}`);
-      ans.push(`Pin is within city`)
+    //   ans.push(`Pin is within city`)
+      ans.push(user[0].zone)
+      
       if(orderType == "COD"){
 
           ans.push(`CARRIER - Delhivery , SHIPPING MODE0 - AIR(0.5kg) , ESTIMATED PRICE - ${(weight/0.5)*36+Math.max((weight/100)*2,41)} `)
@@ -206,11 +216,12 @@ if(destinationPin.length !=6){
 
       }
     }
-    if(sourcePin == 110058 && destinationPin == 110058){
-        console.log("Pin is within the zone")
+    if(user[0].sourcePin == 110058 && user[0].destinationPin == 110058){
+
+        console.log("zone====",user[0].zone)
 
         ans.push(`Pick Up Pin Code-> ${sourcePin}   Delivery Pin Code-> ${destinationPin}`);
-        ans.push(`Pin is within  Zone`)
+        ans.push(user[0].zone)
         if(orderType == "COD"){
             ans.push(`CARRIER - Delhivery , SHIPPING MODE0 - AIR(0.5kg) , ESTIMATED PRICE - ${(weight/0.5)*43+Math.max((weight/100)*2,41)} `)
             ans.push(`CARRIER - EcomExpress , SHIPPING MODE - AIR(0.5kg), ESTIMATED PRICE - ${(weight/0.5)*61+Math.max((weight/100)*2.5,47)}`)
@@ -316,12 +327,12 @@ if(destinationPin.length !=6){
     
     }
 
+    if(user[0].sourcePin == 400001 && user[0].destinationPin == 400009){
 
-    if(sourcePin == 400001 && destinationPin == 400009){
-        console.log("Pin is within the metro")
+        console.log("zone====",user[0].zone)
 
         ans.push(`Pick Up Pin Code-> ${sourcePin}   Delivery Pin Code-> ${destinationPin}`);
-        ans.push(`Pin is within Metro Zone`)
+        ans.push(user[0].zone)
         if(orderType == "COD"){
             ans.push(`CARRIER - Delhivery , SHIPPING MODE0 - AIR(0.5kg) , ESTIMATED PRICE - ${(weight/0.5)*55+Math.max((weight/100)*2,41)} `)
             ans.push(`CARRIER - EcomExpress , SHIPPING MODE - AIR(0.5kg), ESTIMATED PRICE - ${(weight/0.5)*69+Math.max((weight/100)*2.5,47)}`)
@@ -428,12 +439,12 @@ if(destinationPin.length !=6){
     
     }
 
+    if(user[0].sourcePin == 734427 && user[0].destinationPin == 734301){
 
-    if(sourcePin == 734427 && destinationPin == 734301){
-        console.log("Rest Of India ")
+        console.log("zone====",user[0].zone)
 
         ans.push(`Pick Up Pin Code-> ${sourcePin}   Delivery Pin Code-> ${destinationPin}`);
-        ans.push(`Rest of  India`)
+        ans.push(user[0].zone)
         if(orderType == "COD"){
             ans.push(`CARRIER - Delhivery , SHIPPING MODE0 - AIR(0.5kg) , ESTIMATED PRICE - ${(weight/0.5)*58+Math.max((weight/100)*2,41)} `)
             ans.push(`CARRIER - EcomExpress , SHIPPING MODE - AIR(0.5kg), ESTIMATED PRICE - ${(weight/0.5)*79+Math.max((weight/100)*2.5,47)}`)
@@ -538,12 +549,12 @@ if(destinationPin.length !=6){
     }
 
 
+    if(user[0].sourcePin == 751001 && user[0].destinationPin == 401208){
 
-    if(sourcePin == 751001 && destinationPin == 401208){
-        console.log("Pin in special area ")
+      console.log("zone====",user[0].zone)
 
         ans.push(`Pick Up Pin Code-> ${sourcePin}   Delivery Pin Code-> ${destinationPin}`);
-        ans.push(`Pin in special area`)
+        ans.push(user[0].zone)
         if(orderType == "COD"){
             ans.push(`CARRIER - Delhivery , SHIPPING MODE0 - AIR(0.5kg) , ESTIMATED PRICE - ${(weight/0.5)*74+Math.max((weight/100)*2,41)} `)
             ans.push(`CARRIER - EcomExpress , SHIPPING MODE - AIR(0.5kg), ESTIMATED PRICE - ${(weight/0.5)*90+Math.max((weight/100)*2.5,47)}`)
@@ -737,7 +748,7 @@ const price = async (req,res)=>{
        
 
 
-        if(!isNaN(js.length)&&!isNaN(js.width)&&!isNaN(js.height)&&!isNaN(js.weight) && !isNaN(js.invoiceValue)){
+        if(!isNaN(js.length)&&!isNaN(js.width)&&!isNaN(js.height)&&!isNaN(js.weight) ){
 
         const price =   await request({
             uri:"https://api.shyplite.com/pricecalculator",
@@ -774,4 +785,7 @@ const price = async (req,res)=>{
 
 
 
+
 module.exports = {form,pin,logout,apiform,price,login,register};
+
+// compareform compare

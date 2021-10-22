@@ -102,6 +102,7 @@ app.post("/price",controller.pin)
 app.get("/apiform",controller.apiform)
 app.post("/post",urlencodedParser,controller.price)
 
+
 app.listen(3000,() =>{
     console.log("server is running on port 3000")
 })

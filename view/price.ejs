@@ -20,28 +20,18 @@
 <body style="background-color: #EEE;" >
 
     <!-- <button onclick="goBack()">Go Back</button>    <button style=" margin-left: 90%;" ><a href="/logout">Logout</a></button> -->
-         
-
-    
-       
+     
     <h1 style="text-align: center;">SELF DEVELOPED CALCULATOR</h1><br>
     
-<br><br>
+<br>
+<br>
    
-
-
     <form action="/price" method="POST">
         <h5>Pick Up Pin Code    <input type="text" name="sourcePin" placeholder="Source Pin"> Delivery Pin Code     <input type="text" name="destinationPin" placeholder="Destination Pin">
 
         </h5>
     <br>
-<!--     
-    <h5>Choose Your Order Type <select name="orderType"  id="orderType" onclick="myfun()">
-        <option name = "prepaid"  value="Prepaid">Prepaid</option>
-        <option name = "cod" value="COD">COD</option>
-        <option name = "reverse" value="Reverse">Reverse</option>
 
-    </select> -->
 
     <select name="orderType" id="orderType" onclick="myfun()">
         <option value="prepaid">Prepaid</option>
@@ -50,9 +40,6 @@
       </select>
 
     
-   
-      
-     
     <h5>Dimension(cm) <input type="number" name="length" placeholder="length" >
         <input type="number" name="width" placeholder = "width">
         <input type="number" name="height"  placeholder = "height"> Weight(kg) <input type="number" name="weight" placeholder = "weight" >
@@ -73,11 +60,11 @@
     <button type="submit">Get Price</button>
 
     <%if(ans){%>
-        <ul>
+       
             <%for(let i=0;i<ans.length;i++){%>
                 <li> <%=ans[i]%> </li>
             <%}%>
-        </ul>
+      
         
     <%}%>
 
