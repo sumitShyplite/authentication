@@ -72,22 +72,22 @@
 </div>
 
 <div id="self">
-<%- include('price'); %>
-
-    
+<%- include('selfCalculatedPrice'); %>
+ 
 </div>
+
 <div id="shyplite">
-    <%- include('apiform')%>
+    <%- include('shypApiForm'); %>
 </div>
 
 <div id = "comparission"> 
-    <div>
-        <%- include('price'); %>
+   
+        <%- include('compare'); %>
     
-        <%- include('apiform')%>
     </div>
 
 </div>
+
 <script>
     function goBack() {
       window.history.back();
@@ -114,9 +114,9 @@
     }
     function comparission(){
 
-    document.getElementById("shyplite").style.display = "block";
-    document.getElementById("self").style.display = "block";
-    document.getElementById("comparission").style.display = "none";
+    document.getElementById("shyplite").style.display = "none";
+    document.getElementById("self").style.display = "none";
+    document.getElementById("comparission").style.display = "block";
     document.getElementById("notIncluded").style.display = "none"
 
 

@@ -26,7 +26,7 @@
 <br>
 <br>
    
-    <form action="/price" method="POST">
+    <form action="/selfCalculatedPrice" method="POST">
         <h5>Pick Up Pin Code    <input type="text" name="sourcePin" placeholder="Source Pin"> Delivery Pin Code     <input type="text" name="destinationPin" placeholder="Destination Pin">
 
         </h5>
@@ -59,10 +59,10 @@
    
     <button type="submit">Get Price</button>
 
-    <%if(ans){%>
+    <%if(selfDevelopedAns){%>
        
-            <%for(let i=0;i<ans.length;i++){%>
-                <li> <%=ans[i]%> </li>
+            <%for(let i=0;i<selfDevelopedAns.length;i++){%>
+                <li> <%=selfDevelopedAns[i]%> </li>
             <%}%>
       
         
@@ -536,7 +536,11 @@
             }
        },100)
     </script>
-    
-
+  
 </body>
 </html>
+
+
+
+
+

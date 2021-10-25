@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="/compare" method="POST"> 
+    <h5>Pickup Pincode<input type="text" name="sourcePin" placeholder="Enter Pickup Pincode"></h5>
+    <h5>Destination Pincode<input type="text" name="destinationPin" placeholder="Enter Destination Pincode"></h5>
+
+    <select name="orderType" id="orderType3" onclick="myfun()">
+        <option value="prepaid">Prepaid</option>
+        <option value="cod"   >Cod</option>
+        <option value="reverse">Reverse</option>
+      </select>
+
+      <br>
+    
+  
+    <h4>Enter Dimension Of Package  <input type="text" name = "length" placeholder="length">
+        <input type="text" name = "width" placeholder="width">
+        <input type="text" name = "height" placeholder="height">
+        <input type="text" name = "weight" placeholder="weight">
+        <br>
+        
+<div id="my3">
+	<input type="text" name="invoiceValue" placeholder="Invoice value">
+</div>
+<h4>Price Of The Package <button type="submit" >Get Price</button></h4>
+
+
+
+
+<%if(shypliteData && selfDevelopedAns){%>
+       
+    <%var keys = Object.keys(shypliteData.price)%>
+
+    <%for(let i=0;i < (keys.length && selfDevelopedAns.length) ; i++){%>
+        <li> <%=keys[i]%> &nbsp; <%= shypliteData.price[keys[i]]%>   &nbsp;   <%=selfDevelopedAns[i]%>  </li>
+    <%}%>
+        
+
+
+<%}%>
+
+
+</form>
+<script>
+    setInterval(()=>{
+        var val = document.getElementById("orderType3").selectedOptions[0].value;
+        if(val == "cod"){
+        document.getElementById("my3").style.display = "block";
+        }
+        else{
+        document.getElementById("my3").style.display = "none";
+        }
+   },100)
+
+
+   
+</script>
+
+
+
+</body>
+</html>

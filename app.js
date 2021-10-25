@@ -31,15 +31,6 @@ let connection = {
 
 }
 
-// connection.connect((err) => {
-//     if (err) throw err;
-//     connection.query("SELECT * FROM pincodes", function (err, rows, fields) {
-//       if (err) throw err;
-//       console.log(rows);
-//     });
-//   });
-
-
 
 //session
 let sessionStore = new MySQLStore(connection)
@@ -81,8 +72,9 @@ app.get("/home",(req,res)=>{
     if(req.session.isAuth){
         return res.render("apis",{
             name:req.session.name,
-            ans:[],
-            data: undefined
+            selfDevelopedAns:[],
+            shypliteData: undefined,
+            compareData:[]
         })
     }
     res.redirect("/login")
@@ -96,11 +88,14 @@ app.post("/register",urlencodedParser,controller.register)
 
 app.get("/logout",controller.logout)
 
-app.get("/priceform",controller.form)
-app.post("/price",controller.pin)
+app.get("/selfPriceForm",controller.selfDevelopedForm)
+app.post("/selfCalculatedPrice",controller.selfDevelopedCal)
 
-app.get("/apiform",controller.apiform)
-app.post("/post",urlencodedParser,controller.price)
+app.get("/shypApiForm",controller.shypApiForm)
+app.post("/apiCalculatedPrice",urlencodedParser,controller.shypliteCal)
+
+// app.get("/compareform",validator controller.compare)
+app.post("/compare",urlencodedParser,controller.compare)
 
 
 app.listen(3000,() =>{
