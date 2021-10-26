@@ -24,9 +24,9 @@ let MySQLStore = require("express-mysql-session")(session)
 
 let connection = {
   host: 'sql6.freesqldatabase.com',
-  user: 'sql6445341',
-  password: '7U4vlnIgXs',
-  database: 'sql6445341',
+  user: 'sql6446856',
+  password: 'vWgX7YCu5T', 
+  database: 'sql6446856',
   port:'3306'
 
 }
@@ -74,8 +74,9 @@ app.get("/home",(req,res)=>{
             name:req.session.name,
             selfDevelopedAns:[],
             shypliteData: undefined,
-            compareData:[]
-        })
+            compareData:[],
+            
+        });
     }
     res.redirect("/login")
 })
@@ -90,6 +91,8 @@ app.get("/logout",controller.logout)
 
 app.get("/selfPriceForm",controller.selfDevelopedForm)
 app.post("/selfCalculatedPrice",controller.selfDevelopedCal)
+   
+
 
 app.get("/shypApiForm",controller.shypApiForm)
 app.post("/apiCalculatedPrice",urlencodedParser,controller.shypliteCal)

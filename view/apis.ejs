@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=\, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body {font-family: Arial;}
+        body {font-family: Arial;
+            line-height: 200%;}
         
         /* Style the tab */
         .tab {
@@ -72,19 +73,23 @@
 </div>
 
 <div id="self">
-<%- include('selfCalculatedPrice'); %>
- 
+
+        <%- include('selfCalculatedPrice'); %>
+
 </div>
 
 <div id="shyplite">
-    <%- include('shypApiForm'); %>
+
+        <%- include('shypApiForm'); %>
+
 </div>
 
 <div id = "comparission"> 
-   
+
         <%- include('compare'); %>
-    
+
     </div>
+
 
 </div>
 
@@ -95,7 +100,9 @@
     document.getElementById("shyplite").style.display = "none";
     document.getElementById("self").style.display = "none";
     document.getElementById("comparission").style.display = "none";
-    document.getElementById("notIncluded").style.display = "block"
+    document.getElementById("notIncluded").style.display = "block";
+
+   
 
     function selfPrice(){
         

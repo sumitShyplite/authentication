@@ -7,6 +7,7 @@
       border:1px solid black;
     }
     div{
+        line-height: 200%;
         margin: auto;
         width: 100%;
         text-align: center;
@@ -61,12 +62,14 @@
 
     <%if(selfDevelopedAns){%>
        
-            <%for(let i=0;i<selfDevelopedAns.length;i++){%>
+           <%for(let i=0;i<selfDevelopedAns.length;i++){%>
                 <li> <%=selfDevelopedAns[i]%> </li>
+                <br>
             <%}%>
       
         
     <%}%>
+
 
 </form><br><br>
 <div id = "notIncluded">

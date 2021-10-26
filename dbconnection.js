@@ -2,9 +2,9 @@ const mysql = require('mysql');
 const util = require('util');
 const db = mysql.createConnection({
   host: 'sql6.freesqldatabase.com',
-  user: 'sql6445341',
-  password: '7U4vlnIgXs',
-  database: 'sql6445341',
+  user: 'sql6446856',
+  password: 'vWgX7YCu5T',
+  database: 'sql6446856',
   port:'3306'
 });
 global.query = util.promisify(db.query).bind(db);
