@@ -9,10 +9,9 @@
     <title style="text-align:center;"> Price Calculator</title>
 </head>
 <body >
-    <!-- <button onclick="goBack()">Go Back</button><button style=" margin-left: 90%;" ><a href="/logout">Logout</a></button> -->
     
-    <h1 style="text-align: center;">Price Calculator</h1> 
-   
+    <h1 style="text-align: center;">Shyplite Price Calculator</h1> 
+   <br><br><br>
 
     
 
@@ -23,7 +22,7 @@
     <h4>Enter Destination Code <input type="text" name ="destinationPin" placeholder="Enter Destination Pin">
     </h4>
     
-    <br><br>
+    <br>
     <select name="orderType" id="orderType2" onclick="myfun()">
         <option value="prepaid">Prepaid</option>
         <option value="cod"   >Cod</option>
@@ -32,10 +31,11 @@
     <br>
     
   
-    <h4>Enter Dimension Of Package  <input type="text" name = "length" placeholder="length">
+    <h5>Dimension(cm)  <input type="text" name = "length" placeholder="length">
         <input type="text" name = "width" placeholder="width">
-        <input type="text" name = "height" placeholder="height">
-        <input type="text" name = "weight" placeholder="weight">
+        <input type="text" name = "height" placeholder="height"> Weight(kg)        <input type="text" name = "weight" placeholder="weight">
+        </h5>
+        
         <br>
         
 <div id="my2">
@@ -43,10 +43,7 @@
 </div>
 
         <br>
-        <br>
 
-    
-    
     <h4>Price Of The Package <button type="submit" >Get Price</button></h4>
     
         
@@ -55,7 +52,7 @@
        
             <%var keys = Object.keys(shypliteData.price)%>
             <%for(let i=0;i<keys.length;i++){%>
-                <li> <%=keys[i]%> &nbsp; <%= shypliteData.price[keys[i]]%> </li>
+                <li> <%=keys[i]%> &nbsp; <%= shypliteData.price[keys[i]]%> </li><br>
             <%}%>
        
     <%}%>

@@ -4,9 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Compare Between Shyplite And SelfDeveloped</title>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        div{
+            line-height: 200%;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            padding: 4px ;
+        }
+        #main{
+            width:100%;
+            height: 500px;
+            border: 2px solid black;
+            display: flex;
+
+        }
+        .kid{
+            border: 2px solid black;
+            width: 500px;
+            height:500px;
+            justify-content: space-between;
+        }
+        </style>
+    
 </head>
-<body>
+<body style="text-align: center;">
+   <h1 style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </h1><br><br><br>
 
     <form action="/compare" method="POST"> 
     <h5>Pickup Pincode<input type="text" name="sourcePin" placeholder="Enter Pickup Pincode"></h5>
@@ -19,12 +46,10 @@
       </select>
 
       <br>
-    
-  
-    <h4>Enter Dimension Of Package  <input type="text" name = "length" placeholder="length">
+    <h5>Enter Dimension Of Package  <input type="text" name = "length" placeholder="length">
         <input type="text" name = "width" placeholder="width">
         <input type="text" name = "height" placeholder="height">
-        <input type="text" name = "weight" placeholder="weight">
+       Weight(kg) <input type="text" name = "weight" placeholder="weight"></h5>
         <br>
         
 <div id="my3">
@@ -32,43 +57,45 @@
 </div>
 <h4>Price Of The Package <button type="submit" >Get Price</button></h4>
 
-<h3>Self Developed Price</h3>
-<%if(selfDevelopedAns){%>
-       
-    <%for(let i=0;i<selfDevelopedAns.length;i++){%>
-        <li> <%=selfDevelopedAns[i]%> </li>
-    <%}%>
+<div>
+<h3 >Self Developed Price</h3> <br>
+<div id="main">
+    <div class="kid">
+        <%if(selfDevelopedAns){%>
 
-<h3>Shyplite Price</h3>
-<%}%>
-<%if(shypliteData){%>
-       
-    <%var keys = Object.keys(shypliteData.price)%>
-    <%for(let i=0;i<keys.length;i++){%>
-        <li> <%=keys[i]%> &nbsp; <%= shypliteData.price[keys[i]]%> </li>
-    <%}%>
-        
-
-
-<%}%>
-
-<!-- 
-<%if(shypliteData && selfDevelopedAns){%>
-       
-    <%var keys = Object.keys(shypliteData.price)%>
-
-    <%for(let i=0;i < (keys.length && selfDevelopedAns.length) ; i++){%>
-        
-            <%=selfDevelopedAns[i]%> 
-        <br><br><%=keys[i]%> &nbsp; <%= shypliteData.price[keys[i]]%>  
-    <%}%>
-        
+            <%for(let i=0;i<selfDevelopedAns.length;i++){%>
+                <li> <%=selfDevelopedAns[i]%> </li> <br>
+            <%}%>
+            
+            <%}%>
+    </div>
+    <div class="kid">
+        <%if(shypliteData){%>
+    
+            <%var keys = Object.keys(shypliteData.price)%>
+            <%for(let i=0;i<keys.length;i++){%>
+               
+                    <li> <%=keys[i]%> &nbsp; <%= shypliteData.price[keys[i]]%> </li>
+                    <br>
+                
+            <%}%>
+           
+           <%}%>
+    </div>
 
 
-<%}%> -->
+</div>
 
+ <br>
+<h3>Shyplite Price</h3>  
+ <br>
+
+
+</div>
 
 </form>
+
+
 <script>
     setInterval(()=>{
         var val = document.getElementById("orderType3").selectedOptions[0].value;

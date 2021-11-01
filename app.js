@@ -1,7 +1,9 @@
 const express = require("express")
 const bcrypt = require("bcryptjs")
-
-require("./dbconnection")
+const redis = require("redis")
+const connectRedis = require('connect-redis');
+console.log("comingggg");
+require("./dbconnection");
 const ejs = require("ejs")
 const mysql = require("mysql")
 
@@ -10,6 +12,20 @@ const session = require("express-session")
 const cookieParser = require("cookie-parser")
 
 const app = express()
+
+const redisClient = redis.createClient({
+    host: 'localhost',
+    port: 6379,
+    password: 'redis123'
+})
+
+redisClient.on('error', function (err) {
+    console.log('Could not establish a connection with redis. ' + err);
+});
+redisClient.on('connect', function (err) {
+    console.log('Connected to redis successfully');
+});
+const RedisStore = connectRedis(session)
 
 app.use(bodyParser.urlencoded({extended:false}))
 const urlencodedParser = bodyParser.urlencoded({extended:false})
@@ -20,20 +36,20 @@ app.set("views","./view")
 
 const controller = require('./controller')
 
-let MySQLStore = require("express-mysql-session")(session)
+// let MySQLStore = require("express-mysql-session")(session)
 
 let connection = {
-  host: 'sql6.freesqldatabase.com',
-  user: 'sql6446856',
-  password: 'vWgX7YCu5T', 
-  database: 'sql6446856',
+  host: 'localhost',
+  user: 'root',
+  password: 'Sumit@123', 
+  database: 'Project',
   port:'3306'
 
 }
 
 
 //session
-let sessionStore = new MySQLStore(connection)
+let sessionStore = new RedisStore({ client: redisClient })
 
     app.use(session({
     secret:"secret",
@@ -75,7 +91,9 @@ app.get("/home",(req,res)=>{
             selfDevelopedAns:[],
             shypliteData: undefined,
             compareData:[],
-            
+            x: 1,
+            y: 1,
+            z: 1
         });
     }
     res.redirect("/login")

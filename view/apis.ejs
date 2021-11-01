@@ -97,9 +97,19 @@
     function goBack() {
       window.history.back();
     }
-    document.getElementById("shyplite").style.display = "none";
-    document.getElementById("self").style.display = "none";
-    document.getElementById("comparission").style.display = "none";
+    if(<%=x%> == 1){
+        document.getElementById("shyplite").style.display = "none";
+        document.getElementById("comparission").style.display = "none";
+    }
+    if(<%=y%> == 1){
+        document.getElementById("self").style.display = "none";
+        document.getElementById("comparission").style.display = "none";
+    }
+
+    if(<%=z%> == 1){
+        document.getElementById("self").style.display = "none";
+        document.getElementById("shyplite").style.display = "none";
+    }
     document.getElementById("notIncluded").style.display = "block";
 
    
