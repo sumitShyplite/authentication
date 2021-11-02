@@ -19,15 +19,27 @@
         #main{
             width:100%;
             height: 500px;
-            border: 2px solid black;
             display: flex;
+            text-align: center;
 
         }
-        .kid{
-            border: 2px solid black;
-            width: 500px;
+        .selfDeveloped{
+           margin: auto;
+            width: 700px;
             height:500px;
             justify-content: space-between;
+            display: flex;
+            text-align: center;
+
+        }
+        .shyplite{
+            margin: auto;
+            width: 700px;
+            height:500px;
+            justify-content: space-between;
+            display: flex;
+            text-align: center;
+
         }
         </style>
     
@@ -58,36 +70,62 @@
 <h4>Price Of The Package <button type="submit" >Get Price</button></h4>
 
 <div>
-<h3 >Self Developed Price</h3> <br>
+<!-- <h3 >Self Developed Price</h3> <br> -->
 <div id="main">
-    <div class="kid">
-        <%if(selfDevelopedAns){%>
+    <div class="selfDeveloped">
+        
+<%if(selfDevelopedAns.length !=0){%>
+             <table style="margin-left: 150px;">
+                <tr>
+                    <th>MODE</th>
+                    <th>CARRIER</th>
+                    <th>SELFDEVLOPED PRICE</th>
+                </tr>
+             
+                <%for(let i=1;i<selfDevelopedAns.length;i++){%>
+             
+                    
+                <%var str = selfDevelopedAns[i].split("-")%>
+                    <%var mode = str[1].split(",")%>
+                    <%var carrier = str[2].split(",")%>
+                    <%var price = str[3];%>
+                    <tr> 
+                        <td><%=mode[0]%></td> 
+                        <td><%=carrier[0]%></td>
+                        <td><%=price%></td>
+                    </tr>&nbsp;
 
-            <%for(let i=0;i<selfDevelopedAns.length;i++){%>
-                <li> <%=selfDevelopedAns[i]%> </li> <br>
-            <%}%>
+
+                <%}%>
+             </table>
+           <% }%>
+
+        
+    </div>
+     <div class = "shyplite">
+
+        <%if(shypliteData?.price ){%>
+            <table style="text-align: center;">
+               <tr>
+                   <th>MODE</th>
+                   <th>Shyplite PRICE</th>
+               </tr>
+               <%var keys = Object.keys(shypliteData ? shypliteData["price"] : {})%>
+               <%for(let i=0;i<keys.length;i++){%>
+               <tr>
+                   <td><%=keys[i]%></td>
+                   <td><%=shypliteData.price[keys[i]]%></td>
+               </tr>
             
-            <%}%>
+               <%}%>
+            </table>
+            <%}%> 
     </div>
-    <div class="kid">
-        <%if(shypliteData){%>
-    
-            <%var keys = Object.keys(shypliteData.price)%>
-            <%for(let i=0;i<keys.length;i++){%>
-               
-                    <li> <%=keys[i]%> &nbsp; <%= shypliteData.price[keys[i]]%> </li>
-                    <br>
-                
-            <%}%>
-           
-           <%}%>
-    </div>
-
 
 </div>
 
  <br>
-<h3>Shyplite Price</h3>  
+ 
  <br>
 
 

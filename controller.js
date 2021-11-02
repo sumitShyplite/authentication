@@ -101,9 +101,6 @@ if(sourcePin.length!= 6) {
 if(destinationPin.length !=6){
     res.send('Invalid destinationPin!')
 }
-
-const additiona1Kg = weight-1;
-//    remainingWeight = weight-additiona1Kg;
 const selfDevelopedAns = [];
 const air_COD = 5000;
 const lite_COD = 4000
@@ -123,14 +120,20 @@ let additional =`ADD_${zone}`
 if(orderType == "cod"){ 
     selfDevelopedAns.push(`Pin Is With In ${user[0].zone}`)
     for(var i =0;i<price_Calculator.length;i++){
-    let a = price_Calculator[i][zone]
-    
-    
+          let slabCod = weight/price_Calculator[i].Weight_Category
+          let a = price_Calculator[i][zone]
           let b = dimension/lite_COD*price_Calculator[i][zone]
-          let c =  price_Calculator[i][zone] + (weight - price_Calculator[i].Weight_Category)*price_Calculator[i][additional] 
-          let amount = Number(Math.max(a,b,c) + Math.max((weight/100)*price_Calculator[i].CODpercentage,price_Calculator[i].MinCOD))
+          let c = price_Calculator[i][zone] + (slabCod - 1)*price_Calculator[i].Weight_Category * price_Calculator[i][additional]
+          let d = Math.max((weight/100)*price_Calculator[i].CODpercentage,price_Calculator[i].MinCOD)
+          if(price_Calculator[i].Weight_Category == 0.5){
+              c = price_Calculator[i][zone]*slabCod;
 
-        selfDevelopedAns.push(`Mode - ${price_Calculator[i].Mode},Carrier - ${price_Calculator[i].Carrier},Estimated Price - ${amount}`)
+            }
+              let amountCod = Number(Math.max(a,b,c) + d)
+              
+            selfDevelopedAns.push(`Mode - ${price_Calculator[i].Mode},Carrier - ${price_Calculator[i].Carrier},Estimated Price - ${amountCod}`)
+
+
         
     } 
 }
@@ -139,47 +142,21 @@ else{
     selfDevelopedAns.push(`Pin Is With In ${user[0].zone}`)
 
     for(var i=0;i<price_Calculator.length;i++){
-       // let slab = weight/price_Calculator[i].Weight_Category
+        let slab = weight/price_Calculator[i].Weight_Category
         let p = dimension/lite_COD*price_Calculator[i][zone]
         let q = price_Calculator[i][zone]
-       // let s = price_Calculator[i][zone]*(slab)
-        let r = price_Calculator[i][zone]+(weight - price_Calculator[i].Weight_Category)*price_Calculator[i][additional]
-        
-        
-            let amount = Number(Math.max(p , q , r));
+        let r = price_Calculator[i][zone] + (slab - 1)*price_Calculator[i].Weight_Category * price_Calculator[i][additional]
+       if(price_Calculator[i].Weight_Category == 0.5){
+           r = price_Calculator[i][zone]*slab
+       }
+            let amountPreRev = Number(Math.max(p , q , r));
 
-            selfDevelopedAns.push(`Mode - ${price_Calculator[i].Mode},Carrier - ${price_Calculator[i].Carrier},Estimated Price -${amount}`)
+            selfDevelopedAns.push(`Mode - ${price_Calculator[i].Mode},Carrier - ${price_Calculator[i].Carrier},Estimated Price -${amountPreRev}`)
         }
-        
-        // for(var i=0;i<7;i++){
-        //             let slab = weight/price_Calculator[i].Weight_Category
-        //             let p = dimension/lite_COD*price_Calculator[i][zone]
-        //             let q = price_Calculator[i][zone]
-        //             let s = price_Calculator[i][zone]*(slab)
-
-        //             var amountSlab = Number(Math.max(p , q , s));
-        //             console.log("asdfghjkhgfdsadfghjgfds",amountSlab)
-
-
-        
-        // for(var i=7;i>7;i++){
-        //     let p = dimension/lite_COD*price_Calculator[i][zone]
-        //     let q = price_Calculator[i][zone]
-        //     let r = price_Calculator[i][zone]+(weight - price_Calculator[i].Weight_Category)*price_Calculator[i][additional]
-        //     var amountNormal = Number(Math.max(p , q , r));
-        
-
-        // }}
-        // let amount = amountSlab + amountNormal
-        // console.log("amount",amount)
-
-        // selfDevelopedAns.push(`Mode - ${price_Calculator[i].Mode},Carrier - ${price_Calculator[i].Carrier},Estimated Price -${amount}`)
-
     }
-
-
-       
-
+        
+          
+    
 if(req.body.compare==1){
     console.log("selfDevelopedAns=========>",selfDevelopedAns)
     return selfDevelopedAns
