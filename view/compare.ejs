@@ -1,155 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Between Shyplite And SelfDeveloped</title>
     <style>
-        table, th, td {
-          border:1px solid black;
+        table,
+        th,
+        td {
+            border: 1px solid black;
         }
-        div{
+
+        div {
             line-height: 200%;
             margin: auto;
             width: 100%;
             text-align: center;
-            padding: 4px ;
+            padding: 4px;
         }
-        #main{
-            width:100%;
+
+        #main {
+            width: 100%;
             height: 500px;
             display: flex;
             text-align: center;
 
         }
-        .selfDeveloped{
-           margin: auto;
-            width: 700px;
-            height:500px;
-            justify-content: space-between;
-            display: flex;
-            text-align: center;
 
-        }
-        .shyplite{
+        .selfDeveloped {
             margin: auto;
             width: 700px;
-            height:500px;
+            height: 500px;
             justify-content: space-between;
             display: flex;
             text-align: center;
 
         }
-        </style>
-    
+
+        .shyplite {
+            margin: auto;
+            width: 700px;
+            height: 500px;
+            justify-content: space-between;
+            display: flex;
+            text-align: center;
+
+        }
+    </style>
+
 </head>
+
 <body style="text-align: center;">
-   <h1 style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </h1><br><br><br>
+    <h1 style="text-align: center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; </h1><br><br><br>
 
-    <form action="/compare" method="POST"> 
-    <h5>Pickup Pincode<input type="text" name="sourcePin" placeholder="Enter Pickup Pincode"></h5>
-    <h5>Destination Pincode<input type="text" name="destinationPin" placeholder="Enter Destination Pincode"></h5>
-
-    <select name="orderType" id="orderType3" onclick="myfun()">
-        <option value="prepaid">Prepaid</option>
-        <option value="cod"   >Cod</option>
-        <option value="reverse">Reverse</option>
-      </select>
-
-      <br>
-    <h5>Enter Dimension Of Package  <input type="text" name = "length" placeholder="length">
-        <input type="text" name = "width" placeholder="width">
-        <input type="text" name = "height" placeholder="height">
-       Weight(kg) <input type="text" name = "weight" placeholder="weight"></h5>
+    <form action="/compare" method="POST">
+        <h5>Pickup Pincode<input type="text" name="sourcePin" placeholder="Enter Pickup Pincode"></h5>
+        <h5>Destination Pincode<input type="text" name="destinationPin" placeholder="Enter Destination Pincode"></h5>
+        <select name="orderType" id="orderType3" onclick="myfun()">
+            <option value="prepaid">Prepaid</option>
+            <option value="cod">Cod</option>
+            <option value="reverse">Reverse</option>
+        </select>
         <br>
-        
-<div id="my3">
-	<input type="text" name="invoiceValue" placeholder="Invoice value">
-</div>
-<h4>Price Of The Package <button type="submit" >Get Price</button></h4>
+        <h5>Enter Dimension Of Package <input type="text" name="length" placeholder="length">
+            <input type="text" name="width" placeholder="width">
+            <input type="text" name="height" placeholder="height">
+            Weight(kg) <input type="text" name="weight" placeholder="weight">
+        </h5>
+        <br>
 
-<div>
-<!-- <h3 >Self Developed Price</h3> <br> -->
-<div id="main">
-    <div class="selfDeveloped">
-        
-<%if(selfDevelopedAns.length !=0){%>
-             <table style="margin-left: 150px;">
-                <tr>
-                    <th>MODE</th>
-                    <th>CARRIER</th>
-                    <th>SELFDEVLOPED PRICE</th>
-                </tr>
-             
-                <%for(let i=1;i<selfDevelopedAns.length;i++){%>
-             
-                    
-                <%var str = selfDevelopedAns[i].split("-")%>
-                    <%var mode = str[1].split(",")%>
-                    <%var carrier = str[2].split(",")%>
-                    <%var price = str[3];%>
-                    <tr> 
-                        <td><%=mode[0]%></td> 
-                        <td><%=carrier[0]%></td>
-                        <td><%=price%></td>
-                    </tr>&nbsp;
+        <div id="my3">
+            <input type="text" name="invoiceValue" placeholder="Invoice value">
+        </div>
+        <h4>Price Of The Package <button type="submit">Get Price</button></h4>
 
+        <div>
+            <div id="main">
+                <div class="selfDeveloped">
 
-                <%}%>
-             </table>
-           <% }%>
+                    <%if(selfDevelopedAns.length !=0){%>
+                        <table style="margin-left: 150px;">
+                            <tr>
+                                <th>MODE</th>
+                                <th>CARRIER</th>
+                                <th>SELFDEVLOPED PRICE</th>
+                            </tr>
 
-        
-    </div>
-     <div class = "shyplite">
-
-        <%if(shypliteData?.price ){%>
-            <table style="text-align: center;">
-               <tr>
-                   <th>MODE</th>
-                   <th>Shyplite PRICE</th>
-               </tr>
-               <%var keys = Object.keys(shypliteData ? shypliteData["price"] : {})%>
-               <%for(let i=0;i<keys.length;i++){%>
-               <tr>
-                   <td><%=keys[i]%></td>
-                   <td><%=shypliteData.price[keys[i]]%></td>
-               </tr>
-            
-               <%}%>
-            </table>
-            <%}%> 
-    </div>
-
-</div>
-
- <br>
- 
- <br>
+                            <%for(let i=1;i<selfDevelopedAns.length;i++){%>
+                                <%var str=selfDevelopedAns[i].split("-")%>
+                                    <%var mode=str[1].split(",")%>
+                                        <%var carrier=str[2].split(",")%>
+                                            <%var price=str[3];%>
+                                                <tr>
+                                                    <td>
+                                                        <%=mode[0]%>
+                                                    </td>
+                                                    <td>
+                                                        <%=carrier[0]%>
+                                                    </td>
+                                                    <td>
+                                                        <%=price%>
+                                                    </td>
+                                                </tr>&nbsp;
+                                                <%}%>
+                        </table>
+                        <% }%>
 
 
-</div>
+                </div>
+                <div class="shyplite">
 
-</form>
+                    <%if(shypliteData?.price ){%>
+                        <table style="text-align: center;">
+                            <tr>
+                                <th>MODE</th>
+                                <th>Shyplite PRICE</th>
+                            </tr>
+                            <%var keys=Object.keys(shypliteData ? shypliteData["price"] : {})%>
+                                <%for(let i=0;i<keys.length;i++){%>
+                                    <tr>
+                                        <td>
+                                            <%=keys[i]%>
+                                        </td>
+                                        <td>
+                                            <%=shypliteData.price[keys[i]]%>
+                                        </td>
+                                    </tr>
+
+                                    <%}%>
+                        </table>
+                        <%}%>
+                </div>
+            </div>
+        </div>
+    </form>
 
 
-<script>
-    setInterval(()=>{
-        var val = document.getElementById("orderType3").selectedOptions[0].value;
-        if(val == "cod"){
-        document.getElementById("my3").style.display = "block";
-        }
-        else{
-        document.getElementById("my3").style.display = "none";
-        }
-   },100)
+    <script>
+        setInterval(() => {
+            var val = document.getElementById("orderType3").selectedOptions[0].value;
+            if (val == "cod") {
+                document.getElementById("my3").style.display = "block";
+            }
+            else {
+                document.getElementById("my3").style.display = "none";
+            }
+        }, 100)
 
 
-   
-</script>
+
+    </script>
 
 
 
 </body>
+
 </html>

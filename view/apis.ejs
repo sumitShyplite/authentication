@@ -68,7 +68,7 @@
 
        <button  class="tablinks" onclick="shyplite()" type="submit">Shyplite Price Calculator</button>
 
-       <button  class="tablinks" onclick="comparission()" type="submit">Comparrission</button>
+       <button  class="tablinks" onclick="comparission()" type="submit">Comparission</button>
 
 </div>
 
@@ -110,33 +110,27 @@
         document.getElementById("self").style.display = "none";
         document.getElementById("shyplite").style.display = "none";
     }
-    document.getElementById("notIncluded").style.display = "block";
-
-   
-
+        document.getElementById("notIncluded").style.display = "block";
+       
     function selfPrice(){
-        
-        document.getElementById("shyplite").style.display = "none";
         document.getElementById("self").style.display = "block";
+        document.getElementById("shyplite").style.display = "none";
         document.getElementById("comparission").style.display = "none";
         document.getElementById("notIncluded").style.display = "block"
-
-
     }
     function shyplite(){
-        document.getElementById("shyplite").style.display = "block";
         document.getElementById("self").style.display = "none";
+        document.getElementById("shyplite").style.display = "block";
         document.getElementById("comparission").style.display = "none";
-
+        document.getElementById("notIncluded").style.display = "none"
     }
     function comparission(){
 
-    document.getElementById("shyplite").style.display = "none";
-    document.getElementById("self").style.display = "none";
-    document.getElementById("comparission").style.display = "block";
-    document.getElementById("notIncluded").style.display = "none"
-
-
+      document.getElementById("self").style.display = "none";
+      document.getElementById("shyplite").style.display = "none";
+      document.getElementById("comparission").style.display = "block";
+      document.getElementById("notIncluded").style.display = "none"
+      
     }
     function openCalculator(evt, calculator) {
   var i, tabcontent, tablinks;

@@ -2,7 +2,6 @@ const express = require("express")
 const bcrypt = require("bcryptjs")
 const redis = require("redis")
 const connectRedis = require('connect-redis');
-console.log("comingggg");
 require("./dbconnection");
 const ejs = require("ejs")
 const mysql = require("mysql")
@@ -29,7 +28,6 @@ const RedisStore = connectRedis(session)
 
 app.use(bodyParser.urlencoded({extended:false}))
 const urlencodedParser = bodyParser.urlencoded({extended:false})
-
 app.use(cookieParser())
 app.set("view engine","ejs")
 app.set("views","./view")
@@ -47,8 +45,8 @@ let connection = {
 
 }
 
+///////////////////////////// Session /////////////////////////////
 
-//session
 let sessionStore = new RedisStore({ client: redisClient })
 
     app.use(session({
@@ -60,13 +58,11 @@ let sessionStore = new RedisStore({ client: redisClient })
 
 
 app.use((req, res, next)=>{ 
-    console.log("seeeesssiiion====",req.session);
-
     next();
  });
 
 
-//routes
+/////////////////////////////// Routes /////////////////////////////
 app.get("/",(req,res) =>{
     console.log("session ===========>",req.session)
      if(req.session.isAuth){
@@ -76,13 +72,11 @@ app.get("/",(req,res) =>{
      }
      res.redirect("/login")
 })
-
-app.get("/login",(req,res) =>{
+///////////////////////////// Login Routes /////////////////////////////
+ app.get("/login",(req,res) =>{
     res.render("login")
 })
-
 app.post("/login",urlencodedParser,controller.login)
-
 app.get("/home",(req,res)=>{
     console.log("req.session------",req.session)
     if(req.session.isAuth){
@@ -98,22 +92,28 @@ app.get("/home",(req,res)=>{
     }
     res.redirect("/login")
 })
+///////////////////////////// Register /////////////////////////////
 
 app.get("/register",(req,res) =>{
     res.render("signup")
 })
 app.post("/register",urlencodedParser,controller.register)
 
+///////////////////////////// Logout /////////////////////////////
 
 app.get("/logout",controller.logout)
+
+/////////////////////////////Self Calculated Price Calculator /////////////////////////////
 
 app.get("/selfPriceForm",controller.selfDevelopedForm)
 app.post("/selfCalculatedPrice",controller.selfDevelopedCal)
    
-
+///////////////////////////// Shyplite Price Calculator /////////////////////////////
 
 app.get("/shypApiForm",controller.shypApiForm)
-app.post("/apiCalculatedPrice",urlencodedParser,controller.shypliteCal)
+app.post("/shypApiCalculatedPrice",urlencodedParser,controller.shypliteCal)
+
+///////////////////////////// Compare Between Shyplite And Self Developed Calculator /////////////////////////////
 
 // app.get("/compareform",validator controller.compare)
 app.post("/compare",urlencodedParser,controller.compare)
